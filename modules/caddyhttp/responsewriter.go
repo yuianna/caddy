@@ -211,6 +211,10 @@ func (rr *responseRecorder) Size() int {
 	return rr.size
 }
 
+func (rr *responseRecorder) ReqSize() int {
+	return 0
+}
+
 // Buffer returns the body buffer that rr was created with.
 // You should still have your original pointer, though.
 func (rr *responseRecorder) Buffer() *bytes.Buffer {
@@ -320,6 +324,7 @@ type ResponseRecorder interface {
 	Buffer() *bytes.Buffer
 	Buffered() bool
 	Size() int
+	ReqSize() int
 	WriteResponse() error
 }
 
