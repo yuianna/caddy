@@ -246,9 +246,7 @@ func (rr *responseRecorder) FlushError() error {
 	return nil
 }
 
-// Private interface so it can only be used in this package
-// #TODO: maybe export it later
-func (rr *responseRecorder) setReadSize(size *int) {
+func (rr *responseRecorder) SetReadSize(size *int) {
 	rr.readSize = size
 }
 
@@ -319,6 +317,7 @@ type ResponseRecorder interface {
 	Status() int
 	Buffer() *bytes.Buffer
 	Buffered() bool
+	SetReadSize(size *int)
 	Size() int
 	WriteResponse() error
 }
