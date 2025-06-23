@@ -291,11 +291,11 @@ func (hc *hijackedConn) Read(p []byte) (int, error) {
 	return n, err
 }
 
-func (hc *hijackedConn) WriteTo(w io.Writer) (int64, error) {
-	n, err := io.Copy(w, hc.Conn)
-	hc.updateReadSize(int(n))
-	return n, err
-}
+//func (hc *hijackedConn) WriteTo(w io.Writer) (int64, error) {
+//	n, err := io.Copy(w, hc.Conn)
+//	hc.updateReadSize(int(n))
+//	return n, err
+//}
 
 func (hc *hijackedConn) Write(p []byte) (int, error) {
 	n, err := hc.Conn.Write(p)
@@ -303,11 +303,11 @@ func (hc *hijackedConn) Write(p []byte) (int, error) {
 	return n, err
 }
 
-func (hc *hijackedConn) ReadFrom(r io.Reader) (int64, error) {
-	n, err := io.Copy(hc.Conn, r)
-	hc.rr.size += int(n)
-	return n, err
-}
+//func (hc *hijackedConn) ReadFrom(r io.Reader) (int64, error) {
+//	n, err := io.Copy(hc.Conn, r)
+//	hc.rr.size += int(n)
+//	return n, err
+//}
 
 // ResponseRecorder is a http.ResponseWriter that records
 // responses instead of writing them to the client. See
@@ -337,7 +337,7 @@ var (
 	// see PR #5022 (25%-50% speedup)
 	_ io.ReaderFrom = (*ResponseWriterWrapper)(nil)
 	_ io.ReaderFrom = (*responseRecorder)(nil)
-	_ io.ReaderFrom = (*hijackedConn)(nil)
+	//_ io.ReaderFrom = (*hijackedConn)(nil)
 
-	_ io.WriterTo = (*hijackedConn)(nil)
+	//_ io.WriterTo = (*hijackedConn)(nil)
 )
